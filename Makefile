@@ -2,13 +2,14 @@
 .PHONY: build-getAllItemsFunction
 
 build-getAllItemsFunction:
-	$(MAKE) HANDLER=src/handlers/get-all-items.ts build-lambda-common
+	$(MAKE) HANDLER=src/handlers/GetAllItems/get-all-items.ts build-lambda-common
 
 build-lambda-common:
 	yarn
 	rm -rf dist
 	echo "{\"extends\": \"./tsconfig.json\", \"include\": [\"${HANDLER}\"] }" > tsconfig-only-handler.json
-	yarn run build -- --build tsconfig-only-handler.json
+	cat tsconfig-only-handler.json
+	yarn build --build tsconfig-only-handler.json
 	cp -r dist "$(ARTIFACTS_DIR)/"
 
 build-RuntimeDependenciesLayer:

@@ -1,6 +1,5 @@
 import "source-map-support/register";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-import sha256 from 'crypto-js/sha256';
 
 export const getAllItemsHandler = async (
   event: APIGatewayProxyEvent
@@ -11,11 +10,10 @@ export const getAllItemsHandler = async (
     );
   }
 
-  const hashDigest = sha256("sebin");
-
+  let fruits = ["Apples", "Oranges", "Grapes"];
   const response = {
     statusCode: 200,
-    body: JSON.stringify(["Apples", "Oranges", "Grapes"]),
+    body: JSON.stringify(fruits),
   };
 
   // All log statements are written to CloudWatch
