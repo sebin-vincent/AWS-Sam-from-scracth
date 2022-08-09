@@ -2,7 +2,7 @@ import "source-map-support/register";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import sha256 from 'crypto-js/sha256';
 
-export const getAllItemsHandler = async (
+export const lambdaHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
 

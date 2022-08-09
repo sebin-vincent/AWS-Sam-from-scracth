@@ -1,8 +1,8 @@
-.PHONY: build-RuntimeDependenciesLayer build-lambda-common
-.PHONY: build-getAllItemsFunction
+build-GetAllItemsFunction:
+	$(MAKE) HANDLER=src/handlers/getAllItems/app.ts build-lambda-common
 
-build-getAllItemsFunction:
-	$(MAKE) HANDLER=src/handlers/get-all-items.ts build-lambda-common
+build-GetSingleItem:
+	$(MAKE) HANDLER=src/handlers/getSingleItem/app.ts build-lambda-common
 
 build-lambda-common:
 	yarn
