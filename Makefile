@@ -1,15 +1,15 @@
-.PHONY: build-RuntimeDependenciesLayer build-lambda-common
-.PHONY: build-getAllItemsFunction
+build-GetAllItemsFunction:
+	$(MAKE) HANDLER=src/handlers/getAllItems/app.ts build-lambda-common
 
-build-getAllItemsFunction:
-	$(MAKE) HANDLER=src/handlers/GetAllItems/get-all-items.ts build-lambda-common
+
+build-GetSingleItem:
+	$(MAKE) HANDLER=src/handlers/getSingleItem/app.ts build-lambda-common
 
 build-lambda-common:
 	yarn
 	rm -rf dist
 	echo "{\"extends\": \"./tsconfig.json\", \"include\": [\"${HANDLER}\"] }" > tsconfig-only-handler.json
-	cat tsconfig-only-handler.json
-	yarn build --build tsconfig-only-handler.json
+	yarn run build --build tsconfig-only-handler.json
 	cp -r dist "$(ARTIFACTS_DIR)/"
 
 build-RuntimeDependenciesLayer:
