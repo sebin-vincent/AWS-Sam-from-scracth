@@ -8,7 +8,7 @@ build-lambda-common:
 	yarn
 	rm -rf dist
 	echo "{\"extends\": \"./tsconfig.json\", \"include\": [\"${HANDLER}\"] }" > tsconfig-only-handler.json
-	yarn run build -- --build tsconfig-only-handler.json
+	yarn run build --build tsconfig-only-handler.json
 	cp -r dist "$(ARTIFACTS_DIR)/"
 
 build-RuntimeDependenciesLayer:
