@@ -33,12 +33,15 @@ Resources:
     Properties:
       Handler: dist/handlers/getAllItems/app.lambdaHandler
       Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
+      AutoPublishAlias: live
       Events:
         Api:
           Type: Api
           Properties:
             Path: /items
             Method: GET
+      DeploymentPreference:
+        Type: CodeDeployDefault.LambdaCanary10Percent5Minutes
 
   GetSingleItem:
     Type: AWS::Serverless::Function
