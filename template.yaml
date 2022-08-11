@@ -54,6 +54,20 @@ Resources:
             Path: /items/orange
             Method: GET
 
+  ProductFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: makefile
+    Properties:
+      Handler: dist/handlers/product/app.lambdaHandler
+      Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /products
+            Method: GET
+
   RuntimeDependenciesLayer:
     Type: AWS::Serverless::LayerVersion
     Metadata:

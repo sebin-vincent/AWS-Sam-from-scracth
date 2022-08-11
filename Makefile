@@ -4,6 +4,9 @@ build-GetAllItemsFunction:
 build-GetSingleItem:
 	$(MAKE) HANDLER=src/handlers/getSingleItem/app.ts build-lambda-common
 
+build-ProductFunction:
+	$(MAKE) HANDLER=src/handlers/product/app.ts build-lambda-common
+
 build-lambda-common:
 	yarn
 	rm -rf dist
