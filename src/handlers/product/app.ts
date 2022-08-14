@@ -1,23 +1,21 @@
 import "source-map-support/register";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { ProductService } from "./service";
+import { ErrorResponse, ResponseDto } from "../../common/response";
+import { ProductDto } from "./dto/get-product.dto";
 
 export const lambdaHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
+  if (event.httpMethod != "GET") {
+    return new ErrorResponse(400, "Invalid HttpMethod");
+  }
 
-    const productService = new ProductService();
+  const productService = new ProductService();
 
-    const productList = await productService.getAllProducts()
+  const productList = await productService.getAllProducts();
 
-    const apiResponse = {
-        statusCode : 200,
-        body: JSON.stringify(productList)
-    }
+  const apiResponse = new ResponseDto<ProductDto[]>(200, productList);
 
-  // All log statements are written to CloudWatch
-  console.info(
-    `response from: ${event.path} statusCode: ${apiResponse.statusCode} body: ${apiResponse.body}`
-  );
   return apiResponse;
 };
